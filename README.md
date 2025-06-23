@@ -17,8 +17,8 @@ Follow these steps to clone the repository, initialize submodules, and build the
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/mlogger.git # Replace with the actual URL
-    cd mlogger
+    git clone https://github.com/sinterwong/logger.git
+    cd logger
     ```
 
 2.  **Initialize Git submodules:**
@@ -56,24 +56,9 @@ The project includes unit tests built with GoogleTest. Tests are enabled by defa
     Navigate to your build directory and run the tests:
     ```bash
     cd build
-    # The exact path to the test executable might vary slightly based on your CMake configuration and generator.
-    # It's typically in a subdirectory like 'bin/tests' or directly in 'tests' relative to the build root.
     ./<target_arch>/bin/tests/main
     ```
-    Or, if you are in the `build` directory, you can use CTest:
-    ```bash
-    ctest
-    ```
 
-## Contributing
-Contributions are welcome! If you'd like to contribute, please follow these general guidelines:
-1.  Fork the repository.
-2.  Create a new branch for your feature or bug fix.
-3.  Make your changes.
-4.  Ensure your code adheres to the existing style.
-5.  Write unit tests for your changes.
-6.  Ensure all tests pass.
-7.  Submit a pull request.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
