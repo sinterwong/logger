@@ -6,7 +6,7 @@ SET(DEPENDENCY_INCLUDES
 )
 
 SET(DEPENDENCY_LIBS
-    module_logger
+    logger::logger
     glog::glog
     GTest::gtest
     GTest::gtest_main

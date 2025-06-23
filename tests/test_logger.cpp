@@ -1,4 +1,4 @@
-#include "logger/logger.hpp"
+#include "logger.hpp"
 #include <gtest/gtest.h>
 
 class LoggerTest : public ::testing::Test {
