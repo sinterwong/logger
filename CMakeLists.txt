@@ -5,7 +5,7 @@ PROJECT(MLogger VERSION 1.0.0 LANGUAGES CXX)
 
 SET(CMAKE_CXX_STANDARD 20)
 
-OPTION(BUILD_TESTS "Build with tests" ON)
+OPTION(BUILD_TESTS "Build with tests" OFF)
 
 MESSAGE(INFO "--------------------------------")
 MESSAGE(STATUS "Build MLogger: ${AI_WORKFLOW_VERSION}")
