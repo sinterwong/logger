@@ -1,7 +1,7 @@
-# MLogger
+# logger
 
 ## Description
-MLogger is a C++ library that encapsulates the glog logging system, providing a simplified interface for logging within C++ applications. It is designed to be easy to integrate and use.
+Logger is a wrapper for the glog library, providing a simplified interface for logging within C++ applications. It is designed to be easy to integrate and use.
 
 ## Prerequisites
 Before you begin, ensure you have the following installed:
