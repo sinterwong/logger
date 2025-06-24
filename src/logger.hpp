@@ -2,9 +2,12 @@
 #define _MY_LOGGER_HPP__
 
 #include <atomic>
-#include <glog/logging.h>
+#include <memory>
 #include <mutex>
 #include <string>
+
+// Forward declaration
+class LogImpl;
 
 #define ANSI_COLOR_RED "\x1b[31m"
 #define ANSI_COLOR_GREEN "\x1b[32m"
@@ -12,12 +15,17 @@
 #define ANSI_COLOR_BLUE "\x1b[34m"
 #define ANSI_COLOR_RESET "\x1b[0m"
 
+enum class LogLevel { INFO, WARNING, ERROR, FATAL };
+
 class Logger {
+private:
+  class LogImpl;
+
 public:
   struct LogConfig {
     std::string logPath;
     std::string appName = "App";
-    int logLevel = google::INFO;
+    LogLevel logLevel = LogLevel::INFO;
     bool enableConsole = true;
     bool enableColor = true;
   };
@@ -26,7 +34,7 @@ public:
   void initialize(const LogConfig &config);
   void shutdown();
 
-  const char *getColorPrefix(google::LogSeverity severity) const;
+  const char *getColorPrefix(LogLevel severity) const;
   const char *getColorSuffix() const;
 
   bool isInitialized() const;
@@ -42,27 +50,26 @@ private:
   std::mutex mutex_;
   std::atomic<bool> isInitialized_;
   LogConfig config_;
+  std::unique_ptr<LogImpl> pimpl_;
 };
 
 class MyLogMessage {
 public:
-  MyLogMessage(const char *file, int line, google::LogSeverity severity)
-      : glog_message_(file, line, severity) {
-    glog_message_.stream() << Logger::instance()->getColorPrefix(severity);
-  }
+  MyLogMessage(const char *file, int line, LogLevel severity);
+  ~MyLogMessage();
 
-  ~MyLogMessage() {
-    glog_message_.stream() << Logger::instance()->getColorSuffix();
-  }
-
-  std::ostream &stream() { return glog_message_.stream(); }
+  std::ostream &stream(); // Will be implemented in logger.cpp
 
 private:
-  google::LogMessage glog_message_;
+  // google::LogMessage glog_message_; // This will be part of LogImpl or
+  // handled differently
+  LogLevel severity_;     // To store the log level
+  class MyLogMessageImpl; // Forward declaration for Pimpl for MyLogMessage
+  std::unique_ptr<MyLogMessageImpl> pimpl_; // Pimpl
 };
 
-#define LOG_STREAM(severity)                                                   \
-  MyLogMessage(__FILE__, __LINE__, google::severity).stream()
+#define LOG_STREAM(level)                                                      \
+  MyLogMessage(__FILE__, __LINE__, LogLevel::level).stream()
 
 #define LOG_INFOS LOG_STREAM(INFO)
 #define LOG_WARNINGS LOG_STREAM(WARNING)
