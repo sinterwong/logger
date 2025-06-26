@@ -46,7 +46,7 @@ Follow these steps to clone the repository, initialize submodules, and build the
     The compiled library (`liblogger.so` or `logger.dll`) will be located in `build/<target_arch>/lib` and executables (if any) in `build/<target_arch>/bin`.
 
 ## Running Tests
-The project includes unit tests built with GoogleTest. Tests are enabled by default (`BUILD_TESTS=ON`).
+The project includes unit tests built with GoogleTest. Tests are enabled by default (`MLOGGER_BUILD_TESTS=ON`).
 
 1.  **Build the project (if not already done):**
     Follow the steps in the "Building the Project" section. Ensure tests are enabled (which they are by default).

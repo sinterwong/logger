@@ -5,7 +5,7 @@
       "name": "C/C++: g++ build and debug active file",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/install/tests/main",
+      "program": "${workspaceFolder}/install/tests/m_logger_tests",
       "args": [
         "--gtest_filter=*.*"
       ],
