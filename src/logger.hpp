@@ -4,6 +4,7 @@
 #include <atomic>
 #include <memory>
 #include <mutex>
+#include <ostream>
 #include <string>
 
 // Forward declaration
